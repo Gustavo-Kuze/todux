@@ -7,7 +7,7 @@ const Header = () => {
                 <div className="row">
                     <div className="col-6 offset-3 text-center">
                         <h1>Todux app</h1>
-                        <h2>Crie uma lista de afazeres rapidamente</h2>
+                        <h2>Lista de afazeres</h2>
                     </div>
                 </div>
             </div>

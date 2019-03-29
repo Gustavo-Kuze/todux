@@ -1,18 +1,11 @@
 import React from 'react'
-import TodoList from './TodoList'
-import TodoInput from './TodoInput'
+
+import TodoContainer from './TodoContainer.jsx'
 
 const Main = () => {
     return (
         <main>
-            <div className="container">
-                <div className="row">
-                    <div className="col-8 offset-2">
-                        <TodoInput />
-                        <TodoList />
-                    </div>
-                </div>
-            </div>
+            <TodoContainer />
         </main>
     )
 }
