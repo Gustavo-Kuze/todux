@@ -9,12 +9,12 @@ export default class TodoContainer extends Component {
     }
 
     add = todo => {
-        if (!this.state.todos.includes(todo))
-            this.setState({ todos: [...this.state.todos, todo] })
+        if (!this.state.todos.map(t => t.name).includes(todo))
+            this.setState({ todos: [...this.state.todos, { name: todo, done: false }] })
     }
 
-    delete = todo => this.setState({
-        todos: [...this.state.todos.filter(item => item !== todo)]
+    delete = todoName => this.setState({
+        todos: [...this.state.todos.filter(todo => todo.name !== todoName)]
     })
 
     render() {
