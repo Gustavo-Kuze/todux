@@ -8,10 +8,13 @@ export default class TodoContainer extends Component {
         todos: []
     }
 
-    add = todo => this.setState({ todos: [...this.state.todos, todo] })
+    add = todo => {
+        if (!this.state.todos.includes(todo))
+            this.setState({ todos: [...this.state.todos, todo] })
+    }
+
     delete = todo => this.setState({
-        todos: [...this.state.todos]
-            .splice(this.state.todos.indexOf(todo), 1)
+        todos: [...this.state.todos.filter(item => item !== todo)]
     })
 
     render() {
@@ -19,8 +22,8 @@ export default class TodoContainer extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-8 offset-2">
-                        <TodoInput add={this.add}/>
-                        <TodoList todos={this.state.todos}/>
+                        <TodoInput add={this.add} />
+                        <TodoList todos={this.state.todos} delete={this.delete} />
                     </div>
                 </div>
             </div>

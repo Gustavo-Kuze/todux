@@ -7,8 +7,8 @@ export default class TodoList extends Component {
             {item}
             <div className="d-flex justify-content-center align-items-center">
                 <button className="btn btn-link text-warning edit-item"><i className="fas fa-pen"></i></button>
-                <button className="btn btn-link text-danger edit-item"><i className="fas fa-trash"></i></button>
                 <button className="btn btn-link text-success edit-item"><i className="fas fa-check"></i></button>
+                <button onClick={() => this.props.delete(item)} className="btn btn-link text-danger edit-item"><i className="fas fa-trash"></i></button>
             </div>
         </li>
     ))
