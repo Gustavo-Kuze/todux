@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { add } from '../components/redux/actions/todoActions'
 
 class TodoInput extends Component {
 
@@ -7,9 +10,9 @@ class TodoInput extends Component {
     }
 
     addTodo = () => {
-        if (this.state.todoInputValue){
+        if (this.state.todoInputValue) {
             this.props.add(this.state.todoInputValue)
-            this.setState({todoInputValue: ''})
+            this.setState({ todoInputValue: '' })
         }
     }
 
@@ -18,7 +21,7 @@ class TodoInput extends Component {
     }
 
     handleKeyUp = e => {
-        if(e.key === 'Enter'){
+        if (e.key === 'Enter') {
             this.addTodo()
         }
     }
@@ -39,4 +42,8 @@ class TodoInput extends Component {
     }
 }
 
-export default TodoInput
+const mapDispatchToProps = dispatch => bindActionCreators({
+    add
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(TodoInput)
