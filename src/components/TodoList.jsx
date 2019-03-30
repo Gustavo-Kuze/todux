@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-export default class TodoList extends Component {
+class TodoList extends Component {
 
     toggleDone = (itemName, isItemDone) => {
-        if(isItemDone){
+        if (isItemDone) {
             this.props.resetTodo(itemName)
-            
-        }else{
+
+        } else {
             this.props.markTodoAsDone(itemName)
         }
-    } 
+    }
 
-    renderItems = items => items.map((item, i) => (
+    renderItems = items => {
+        console.log(items)
+        return items.map((item, i) => (
         <li key={`${item}--${i}`} className="list-group-item d-flex justify-content-between align-items-center">
             <span>{!item.done ? item.name : <del className="text-muted">{item.name}</del>}</span>
             <div className="d-flex justify-content-center align-items-center">
@@ -19,13 +23,13 @@ export default class TodoList extends Component {
                     className={`btn btn-link edit-item ${item.done ? 'text-warning' : 'text-success'}`} >
                     <i className={`fas fa-${item.done ? 'times' : 'check'}`}></i>
                 </button>
-            <button onClick={() => this.props.delete(item.name)}
-                className="btn btn-link text-danger edit-item">
-                <i className="fas fa-trash"></i>
-            </button>
+                <button onClick={() => this.props.delete(item.name)}
+                    className="btn btn-link text-danger edit-item">
+                    <i className="fas fa-trash"></i>
+                </button>
             </div>
         </li >
-    ))
+    ))}
 
     render() {
         return (
@@ -36,3 +40,9 @@ export default class TodoList extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    todos: state.todos
+})
+
+
+export default connect(mapStateToProps)(TodoList)
